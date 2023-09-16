@@ -3,22 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample Web Application</title>
+    <title>Sample Web Page</title>
 </head>
 <body>
-    <h1>Welcome to Sample Web Application</h1>
-    <form action="process.php" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Submit">
-    </form>
-    <div id="output"></div>
+    <h1>Welcome to Our Website</h1>
+    
+    <!-- User-generated content properly sanitized and escaped -->
+    <div id="user-content">
+        <!-- Use JavaScript libraries or functions to escape user-generated content -->
+        <script>
+            // JavaScript code here
+            var userScript = "alert('This is a secure script!');";
+            var sanitizedScript = escapeHtml(userScript);
+            eval(sanitizedScript);
+        </script>
+    </div>
+
+    <p>Thank you for visiting our website.</p>
+
+    <!-- JavaScript function to escape special characters -->
+    <script>
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
 </body>
-<script>
-    // Simulated XSS vulnerability (unsafe)
-    let userInput = "<img src='x' onerror='alert(\"XSS Attack!\")'>";
-    document.getElementById("output").innerHTML = userInput;
-</script>
 </html>
